@@ -1,0 +1,37 @@
+﻿@model IEnumerable<User_Albums.Models.Album>
+@{
+    ViewBag.Title = "ViewAlbums";
+}
+
+<h2>Albums</h2>
+
+@using (Html.BeginForm("ViewAlbums", "UserAlbum"))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="container">
+        <table class="table" Id="userTable">
+            <thead>
+            <tr class="active">
+                <th>@Html.DisplayNameFor(model => model.Title)</th>
+                
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="success">
+                    <td>@Html.ActionLink(item.Title, "ViewAlbumPhotos", new {Id = item.Id})</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

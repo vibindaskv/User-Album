@@ -1,0 +1,25 @@
+﻿@model IEnumerable<User_Albums.Models.Photos>
+@{
+    ViewBag.Title = "Album Photos";
+}
+<h2>Album Photos</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="col-sm-12 text-centre">
+        @foreach (var item in Model)
+        {
+            <a href=@item.Url>
+                <img src=@item.ThumbnailUrl alt=@item.Title class=".imgSource" />
+            </a>
+        }
+    </div>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

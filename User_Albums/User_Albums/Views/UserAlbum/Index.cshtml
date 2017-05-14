@@ -1,0 +1,40 @@
+﻿@model IEnumerable<User_Albums.Models.User>
+
+@{
+    ViewBag.Title = "User List";
+}
+<h2>User Page</h2>
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="container">
+        <table class="table table-hover" Id="userTable">
+            <thead>
+            <tr class="active">
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                <th>@Html.DisplayNameFor(model => model.Email)</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {       
+                    <tr class="success">
+                    <td>@Html.ActionLink(item.Name, "ViewAlbums", new { Id = item.Id })</td>
+                    <td>@Html.ActionLink(item.UserName,"ViewAlbums", new { Id = item.Id })</td>
+                    <td>@Html.ActionLink(item.Email, "ViewAlbums", new { Id = item.Id })</td>
+                    </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+   
+}
